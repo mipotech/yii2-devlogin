@@ -25,7 +25,7 @@ then add this line:
 "mipotech/yii2-devlogin": "dev-master",
 ```
 
-to the require section of your `composer.json` file and perform a composer update.
+to the `require` section of your `composer.json` file and perform a composer update.
 
 ## Configuration
 
