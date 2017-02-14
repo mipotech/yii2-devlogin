@@ -1,0 +1,21 @@
+{
+    "name": "mipotech/yii2-devlogin",
+    "description": "A package for adding a login screen for a whole site",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","dev"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Chaim Leichman, MIPO Technologies Ltd",
+            "email": "chaim@mipo.co.il"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "mipotech\\devlogin\\": ""
+        }
+    }
+}
