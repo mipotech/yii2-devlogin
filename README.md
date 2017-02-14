@@ -6,12 +6,6 @@ typically when in dev or test mode.
 ## Installation
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
 
-Either run
-
-```
-php composer.phar require  mipo/yii2-multiple-input "~2.0"
-```
-
 First add this entry to the `repositories` section of your composer.json:
 
 ```
