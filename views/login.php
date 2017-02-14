@@ -7,7 +7,7 @@ $logoPath = Yii::$app->devlogin->logoPath;
 ?>
 
 <div class="container" id="content">
-    <?php if($logoPath): ?>
+    <?php if ($logoPath): ?>
         <div class="page-header text-center">
             <img src="<?=$logoPath?>" alt="<?=Html::encode(Yii::$app->name)?>" />
         </div>
@@ -15,7 +15,7 @@ $logoPath = Yii::$app->devlogin->logoPath;
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <?php if($model->errors): ?>
+            <?php if ($model->errors): ?>
                 <!-- @@@ -->
             <?php endif; ?>
             <?php $form = ActiveForm::begin([
