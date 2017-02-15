@@ -9,15 +9,22 @@ class LoginForm extends Model
 {
     /**
      *
+     * @var string $password
+     */
+    public $password;
+
+    /**
+     *
+     * @var string $redirectUrl The URL to which to redirect after successful login
+     */
+    public $redirectUrl;
+
+    /**
+     *
      * @var string $username
      */
     public $username;
 
-    /**
-     *
-     * @var string $password
-     */
-    public $password;
 
     /**
      * @inheritdoc
@@ -26,6 +33,7 @@ class LoginForm extends Model
     {
         return [
             [['username', 'password'], 'required'],
+            ['redirectUrl', 'string'],
         ];
     }
 

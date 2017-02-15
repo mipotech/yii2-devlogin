@@ -15,6 +15,8 @@
         #login-form {padding: 0 30px;}
         .col-lg-offset-1.col-lg-11 {width: 100%; margin: 0px; text-align: center;}
         .btn-primary { width: 50%; font-size: 16px; font-weight: 700; }
+        .form-group.field-loginform-redirecturl { margin:0; }
+        .form-group.field-loginform-redirecturl .help-block { display:none; }
 
         @media (max-width: 500px) {
             #content {width: 100%;}

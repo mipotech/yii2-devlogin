@@ -47,6 +47,12 @@ class Bootstrap extends Component implements BootstrapInterface
     public $password;
 
     /**
+     *
+     * @var string $redirectUrl The URL to which to redirect after successful login
+     */
+    public $redirectUrl;
+
+    /**
      * @var string $sessionKey The name of the sessio key in which to mark that the user has logged in
      */
     public $sessionKey = 'devlogin';
@@ -65,6 +71,9 @@ class Bootstrap extends Component implements BootstrapInterface
      */
     public function bootstrap($app)
     {
+        // Retrieve the currently requested URL
+        $url = $this->redirectUrl = $app->request->url;
+
         // Assert that the current environment is relevant
         if (!in_array(YII_ENV, $this->environments)) {
             Yii::trace('Skipped. Not relevant to environment '.YII_ENV, 'devlogin');
@@ -74,10 +83,9 @@ class Bootstrap extends Component implements BootstrapInterface
             return;
         } elseif (count($this->excludePaths)) {
             Yii::trace("Checking excluded paths...", 'devlogin');
-            $url = $app->request->url;
 
             foreach ($this->excludePaths as $path) {
-                if (preg_match('/^\/'.$path.'/', $url)) {
+                if (preg_match('/'.str_replace('/', '\/', $path).'/', $url)) {
                     Yii::trace("Skipped because of path {$path}", 'devlogin');
                     return;
                 }

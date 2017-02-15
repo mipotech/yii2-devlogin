@@ -23,7 +23,12 @@ class LoginController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             Yii::$app->session->set(Yii::$app->devlogin->sessionKey, 1);
-            return $this->goBack();
+
+            return $model->redirectUrl ? $this->redirect($model->redirectUrl) : $this->goBack();
+        } else {
+            if (!empty(Yii::$app->devlogin->redirectUrl)) {
+                $model->redirectUrl = Yii::$app->devlogin->redirectUrl;
+            }
         }
 
         return $this->render('login', [

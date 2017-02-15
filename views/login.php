@@ -22,6 +22,7 @@ $logoPath = Yii::$app->devlogin->logoPath;
                 'id' => 'login-form',
                 'options' => ['class' => 'form-horizontal'],
             ]) ?>
+                <?= $form->field($model, 'redirectUrl')->hiddenInput()->label(false); ?>
                 <?= $form->field($model, 'username')->textInput([
                     'required' => true,
                 ]) ?>
