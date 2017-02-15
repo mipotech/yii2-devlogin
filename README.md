@@ -35,12 +35,15 @@ Add `devlogin` as an application component in @app/config/web.php:
 'components' => [
     ...
     'devlogin' => [
+        /* Required settings */
         'class' => 'mipotech\devlogin\Bootstrap',
-        //'environments' => ['dev'],    defaults to ['dev', 'test']
-        'excludePaths' => ['dashboard','gii'],    // defaults to []
-        'logoPath' => '/images/logo.png',
         'username' => 'XXXXX',
         'password' => 'YYYYY',
+        
+        /* Optional settings */
+        'environments' => ['dev'],    // defaults to ['dev', 'test']
+        'excludePaths' => ['/dashboard','/gii'],    // defaults to []
+        'logoPath' => '/images/logo.png',
     ],
     ...
 ]
