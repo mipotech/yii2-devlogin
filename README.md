@@ -42,6 +42,7 @@ Add `devlogin` as an application component in @app/config/web.php:
         
         /* Optional settings */
         'environments' => ['dev'],    // defaults to ['dev', 'test']
+        'excludeIPs' => ['192.168.10.1'],    // IP addresses to exclude from this rule. defaults to []
         'excludePaths' => ['/dashboard','/gii'],    // defaults to []
         'logoPath' => '/images/logo.png',
     ],

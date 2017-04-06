@@ -26,6 +26,12 @@ class Bootstrap extends Component implements BootstrapInterface
 
     /**
      *
+     * @var array The IPs to exclude from requiring login.
+     */
+    public $excludeIPs = [];
+
+    /**
+     *
      * @var array $excludePaths Paths to exclude from this bootstrap rule.
      * The paths will be checked against the current URL using the following logic:
      *
@@ -73,6 +79,12 @@ class Bootstrap extends Component implements BootstrapInterface
     {
         // Retrieve the currently requested URL
         $url = $this->redirectUrl = $app->request->url;
+
+        // Assert that the user's IP isn't excluded
+        if (count($this->excludeIPs) && in_array($app->request->userIP, $this->excludeIPs)) {
+            Yii::trace('Skipped. Not relevant to to this IP: '.$app->request->userIP, 'devlogin');
+            return;
+        }
 
         // Assert that the current environment is relevant
         if (!in_array(YII_ENV, $this->environments)) {
