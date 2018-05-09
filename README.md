@@ -4,25 +4,16 @@ This package provides a simple way to password-protect an entire site,
 typically when in dev or test mode.
 
 ## Installation
-The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
-
-First add this entry to the `repositories` section of your composer.json:
+The preferred way to install this extension is through [composer](http://getcomposer.org/download/). Either run
 
 ```
-"repositories": [{
-    ...
-},{
-    "type": "git",
-    "url": "https://github.com/mipotech/yii2-devlogin.git"
-},{
-    ...
-}],
+php composer.phar require --prefer-dist mipotech/yii2-devlogin "*"
 ```
 
-then add this line:
+or add:
 
 ```
-"mipotech/yii2-devlogin": "dev-master",
+"mipotech/yii2-devlogin": "*",
 ```
 
 to the `require` section of your `composer.json` file and perform a composer update.
