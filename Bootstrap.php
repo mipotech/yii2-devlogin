@@ -77,6 +77,12 @@ class Bootstrap extends Component implements BootstrapInterface
      */
     public function bootstrap($app)
     {
+        // Exclude localhost
+        if ($app->request->hostName == 'localhost') {
+            Yii::trace('Skipped. Running from localhost', 'devlogin');
+            return;
+        }
+        
         // Retrieve the currently requested URL
         $url = $this->redirectUrl = $app->request->url;
 
