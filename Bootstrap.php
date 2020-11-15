@@ -69,7 +69,6 @@ class Bootstrap extends Component implements BootstrapInterface
      */
     public $username;
 
-
     /**
      * Bootstrap method to be called during application bootstrap stage.
      *
@@ -82,28 +81,30 @@ class Bootstrap extends Component implements BootstrapInterface
             Yii::trace('Skipped. Running from localhost', 'devlogin');
             return;
         }
-        
+
         // Retrieve the currently requested URL
         $url = $this->redirectUrl = $app->request->url;
 
         // Assert that the user's IP isn't excluded
-        if (count($this->excludeIPs) && in_array($app->request->userIP, $this->excludeIPs)) {
-            Yii::trace('Skipped. Not relevant to to this IP: '.$app->request->userIP, 'devlogin');
-            return;
+        $ip = Yii::$app->getRequest()->getUserIP();
+        foreach ($this->excludeIPs as $filter) {
+            if ($filter === '*' || $filter === $ip || (($pos = strpos($filter, '*')) !== false && !strncmp($ip, $filter, $pos))) {
+                Yii::trace("Skipped. Not relevant to to this IP: {$ip}", 'devlogin');
+                return;
+            }
         }
 
         // Assert that the current environment is relevant
         if (!in_array(YII_ENV, $this->environments)) {
-            Yii::trace('Skipped. Not relevant to environment '.YII_ENV, 'devlogin');
+            Yii::trace('Skipped. Not relevant to environment ' . YII_ENV, 'devlogin');
             return;
         } elseif (empty($this->username) || empty($this->password)) {
             Yii::trace('Skipped. No credentials set in application component configuration', 'devlogin');
             return;
         } elseif (count($this->excludePaths)) {
             Yii::trace("Checking excluded paths...", 'devlogin');
-
             foreach ($this->excludePaths as $path) {
-                if (preg_match('/'.str_replace('/', '\/', $path).'/', $url)) {
+                if (preg_match('/' . str_replace('/', '\/', $path) . '/', $url)) {
                     Yii::trace("Skipped because of path {$path}", 'devlogin');
                     return;
                 }
